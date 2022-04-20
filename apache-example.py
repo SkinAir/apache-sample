@@ -22,16 +22,19 @@ def examples():
     try:
         requests.packages.urllib3.disable_warnings()
         response = requests.get(poc, headers=headers, timeout=15,verify=False)
-        if response.status_code == 200 and "Apache Tomcat Examples" in response.content:
+        if response.status_code == 200 and b"Apache Tomcat Examples" in response.content:
+        #if response.status_code == 200:
             print(u'\033[1;31;40m[+]{} is apache Sample directory exists'.format(urls))
             print(response.content)
             with open('./result.txt','a') as f:
-                f.write(urls)
+                f.write('[+]' + urls)
                 f.write('\n')
         else:
             print('\033[1;32;40m[-]{} None'.format(urls))
-    except:
-        print('{} request timeout'.format(urls))
+    # except:
+    #     print('{} request timeout'.format(urls))
+    except Exception as e:
+        print(e)
 
 if __name__ == '__main__':
     print(banner)
