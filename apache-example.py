@@ -5,6 +5,7 @@
 from urllib import response
 import requests,sys,colorama
 from colorama import *
+import sys
 
 banner = '''\033[1;33;40m
                                      .__          
@@ -37,18 +38,24 @@ def examples():
         print(e)
 
 if __name__ == '__main__':
-    print(banner)
-    if len(sys.argv) != 2:
-        print('Example:python3 apache-example.py urls.txt')
-    else:
-        with open('./urls.txt','r') as u:
-            line = u.readlines()
-            for url in line:
-                urls = url.strip()
-                if urls[-1] == '/':
-                    urls = urls[:-1]
-                examples()
-            print('over')
+    try:
+        print(banner)
+        path=sys.argv[1]
+        if len(sys.argv) != 2:
+            print('Example:python3 apache-example.py urls.txt')
+        else:
+            with open(path,'r') as u:
+                line = u.readlines()
+                for url in line:
+                    urls = url.strip()
+                    if urls[-1] == '/':
+                        urls = urls[:-1]
+                    examples()
+                print('over')
+    except:
+        print('python3 ms2.py url.txt')
+        sys.exit()
+
 
                 
 
