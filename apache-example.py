@@ -25,31 +25,32 @@ def examples():
         requests.packages.urllib3.disable_warnings()
         for exp in payload:
             response = requests.get(urls+exp, headers=headers,timeout=15,verify=False)
+            size = len(response.text)
             if response.status_code == 200 and b"Apache Tomcat" in response.content:
-                print(u'\033[1;31;40m[+]{} is docs exists'.format(urls))
+                print(u'\033[1;31;40m[+] Size:[{}] {} is docs exists'.format(size,urls))
                 #print(response.content)
                 with open('./result.txt','a') as f:
-                    f.write('[+]' + urls + 'docs exists')
+                    f.write('[+]' + '[' + str(size) + ']' + urls + 'docs exists')
                     f.write('\n')
             elif response.status_code == 200 and b"Apache Tomcat Examples" in response.content:
-                print(u'\033[1;31;40m[+]{} is apache Sample directory exists'.format(urls))
+                print(u'\033[1;31;40m[+] Size:[{}] {} is apache Sample directory exists'.format(size,urls))
                 with open('./result.txt','a') as f:
-                    f.write('[+]' + urls + 'examples exists')
+                    f.write('[+]' + '[' + str(size) + ']' + urls + 'examples exists')
                     f.write('\n')
             elif response.status_code == 200 and b"Hello, World Application" in response.content:
-                print(u'\033[1;31;40m[+]{} is apache WEB-INF'.format(urls))
+                print(u'\033[1;31;40m[+] Size:[{}] {} is apache WEB-INF'.format(size,urls))
                 with open('./result.txt','a') as f:
-                    f.write('[+]' + urls + 'WEB-INF exists')
+                    f.write('[+]' + '[' + str(size) + ']' + urls + 'WEB-INF exists')
                     f.write('\n')
             elif response.status_code == 200 and b"jQuery" in response.content:
-                print(u'\033[1;31;40m[+]{} is media-example exists'.format(urls))
+                print(u'\033[1;31;40m[+] Size:[{}] {} is media-example exists'.format(size,urls))
                 with open('./result.txt','a') as f:
-                    f.write('[+]' + urls + 'media-example exists')
+                    f.write('[+]' + '[' + str(size) + ']' + urls + 'media-example exists')
                     f.write('\n')
             elif response.status_code == 200 and b"Apache Tomcat" in response.content:
-                print(u'\033[1;31;40m[+]{} is apache docs exists'.format(urls))
+                print(u'\033[1;31;40m[+] Size:[{}] {} is apache docs exists'.format(size,urls))
                 with open('./result.txt','a') as f:
-                    f.write('[+]' + urls + 'docs exists')
+                    f.write('[+]' + '[' + str(size) + ']' + urls + 'docs exists')
                     f.write('\n')
             else:
                 print('\033[1;32;40m[-]{} None'.format(urls))
